@@ -223,6 +223,8 @@ def main(retrieve_all, direct_msgs, group_name, csv_file, overwrite):
 			print ("Group name not found. Here are the list of groups:")
 			print (getGroupNames(groups))
 		else:
+			if csv_file == 'temp.csv':
+				csv_file = group_name.lower().replace(' ', '_')+'.csv'
 			if csv_file and os.path.isfile(csv_file) and not overwrite:
 				raise IOError("File already exists. Try setting --overwrite.")
 			if not csv_file:
