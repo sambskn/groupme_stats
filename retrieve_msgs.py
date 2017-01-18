@@ -53,7 +53,7 @@ def getDMs():
 		return None
 	d = {}
 	for group in groups:
-		name = str(group['other_user']['name'].encode('utf-8').strip())
+		name = str(group['other_user']['name'])
 		count = group['messages_count']
 		if count > 0:
 			d[name] = {}
@@ -196,7 +196,7 @@ def countMsgs(group_name, group_id, direct_msgs, csv_file=None, processTextFunc=
 			if user not in users:
 				users[user] = []
 			if csv_file:
-				wr.writerow([group_name, created_at.encode('utf-8'), user.encode('utf-8'), text.encode('utf-8'), likes])
+				wr.writerow([group_name, created_at, user, text, likes])
 			if processTextFunc is not None:
 				data = processTextFunc(msg)
 				users[user].append(data)
