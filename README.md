@@ -1,5 +1,10 @@
 Download GroupMe Messages
 =============
+Forked by me to work on converting it to Python 3, adding functionality
+=============
+
+
+
 
 This is a tool to download GroupMe messages to a CSV file and display simple stats about those messages.
 
@@ -16,7 +21,7 @@ In order to download GroupMe messages, you need an unique access token provided 
 
 Dependencies
 --------------
-Python 2.7. You need to have Python's <a href="http://docs.python-requests.org/en/latest/" target="_blank">requests</a> library: ```pip install requests```
+Python 3 You need to have Python's <a href="http://docs.python-requests.org/en/latest/" target="_blank">requests</a> library: ```pip3 install requests```
 
 Instructions
 --------------
