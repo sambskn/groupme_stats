@@ -185,18 +185,21 @@ def countMsgs(group_name, group_id, direct_msgs, csv_file=None, processTextFunc=
 				print ("Error parsing created_at")
 				created_at = ""
 			user = msg['name']
+			user_id = msg['user_id']
 			text = msg['text']
 			likes = getNumFavorited(msg)
 			if text is None:
 				text = ""
 			if user is None:
 				user = ""
+			if user_id is None:
+				user_id = ""
 			if created_at is None:
 				created_at = ""
 			if user not in users:
 				users[user] = []
 			if csv_file:
-				wr.writerow([group_name, created_at, user, text, likes])
+				wr.writerow([group_name, created_at, user, user_id, text, likes])
 			if processTextFunc is not None:
 				data = processTextFunc(msg)
 				users[user].append(data)
