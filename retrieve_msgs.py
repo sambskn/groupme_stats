@@ -156,6 +156,8 @@ def countMsgs(group_name, group_id, direct_msgs, csv_file=None, processTextFunc=
 	if csv_file:
 		f = open(csv_file, "a")
 		wr = csv.writer(f, dialect="excel")
+	if csv_file:
+		wr.writerow(['Group Name', 'Created At', 'User', 'User ID', 'Message', 'Number of Likes'])
 	if type(sinceTs) == datetime.datetime:
 		sinceTs = int(sinceTs.strftime("%s"))
 	totalCount = getGroupCount(group_id, direct_msgs)
@@ -187,6 +189,7 @@ def countMsgs(group_name, group_id, direct_msgs, csv_file=None, processTextFunc=
 			user = msg['name']
 			user_id = msg['user_id']
 			text = msg['text']
+			attachments = msg['attachments']
 			likes = getNumFavorited(msg)
 			if text is None:
 				text = ""
@@ -198,6 +201,10 @@ def countMsgs(group_name, group_id, direct_msgs, csv_file=None, processTextFunc=
 				created_at = ""
 			if user not in users:
 				users[user] = []
+			if attachments:
+				attachments_info = attachments[0]
+				if attachments_info["type"] == 'image':
+					text+=" (" + attachments_info["url"] + ")"
 			if csv_file:
 				wr.writerow([group_name, created_at, user, user_id, text, likes])
 			if processTextFunc is not None:
